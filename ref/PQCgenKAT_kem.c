@@ -72,7 +72,11 @@ main()
     done = 0;
     do {
         if ( FindMarker(fp_req, "count = ") )
-            fscanf(fp_req, "%d", &count);
+            if(fscanf(fp_req, "%d", &count) != 1){
+                fprintf(stderr,"Error: Failed to parse expected input format\n");
+                fclose(fp_req);
+                return -1;
+            }
         else {
             done = 1;
             break;

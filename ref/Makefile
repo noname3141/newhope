@@ -1,5 +1,5 @@
 CC = /usr/bin/gcc
-CFLAGS = -Wall -Wextra -g -O3 -fomit-frame-pointer -march=native
+CFLAGS = -Wall -Wextra -g -O3 -fomit-frame-pointer -march=native -Wl,-z,noexecstack
 NISTFLAGS = -O3 -fomit-frame-pointer -march=native -fPIC -no-pie
 
 HEADERS = params.h poly.h randombytes.h ntt.h reduce.h verify.h cpapke.h

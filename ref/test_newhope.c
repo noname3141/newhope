@@ -63,7 +63,11 @@ int test_invalid_sk_a()
     crypto_kem_enc(sendb, key_b, pk);
 
     //Replace secret key with random values
-    fread(sk_a, CRYPTO_SECRETKEYBYTES, 1, urandom); 
+    if(fread(sk_a, CRYPTO_SECRETKEYBYTES, 1, urandom) != 1){
+        fprintf(stderr, "Error: Failed to read expected bytes from urandom\n");
+        fclose(urandom);
+        return -1;
+    }
   
     //Alice uses Bobs response to get her secre key
     crypto_kem_dec(key_a, sendb, sk_a);
